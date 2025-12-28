@@ -25,3 +25,5 @@ Used API's:
 ## Example 
 
 ![Server is running](https://github.com/helpicantchoose/web_technologies_2_assignment_2/blob/main/images/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-12-28%20144104.png?raw=true)
+
+![Server is running](https://github.com/helpicantchoose/web_technologies_2_assignment_2/blob/main/images/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-12-28%20144341.png?raw=true)

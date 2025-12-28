@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather & Facts</title>
+    <style>
+        body { font-family: Arial; text-align: center; background: #f0f0f0; }
+        .box { background: white; max-width: 400px; margin: 50px auto; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        input { padding: 10px; width: 60%; }
+        button { padding: 10px; cursor: pointer; }
+        #info { margin-top: 20px; text-align: left; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1>City Finder</h1>
+        <input type="text" id="cityInput" placeholder="Enter city name...">
+        <button id="btn">Search</button>
+
+        <div id="info">
+            <!-- Data will appear here -->
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const infoDiv = document.getElementById('info');
+
+        btn.onclick = async () => {
+            const city = document.getElementById('cityInput').value;
+            infoDiv.innerHTML = "Loading...";
+
+            try {
+                // We ask OUR server for the data
+                const response = await fetch(`/weather-data?city=${city}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    infoDiv.innerHTML = `<p class="error">${data.error}</p>`;
+                    return;
+                }
+
+                // Displaying the data using normal HTML
+                infoDiv.innerHTML = `
+                    <h3>Results for ${city.toUpperCase()} (${data.country_code})</h3>
+                    <p><b>Temp:</b> ${data.temperature}°C</p>
+                    <p><b>Feels Like:</b> ${data.feels_like}°C</p>
+                    <p><b>Weather:</b> ${data.description}</p>
+                    <p><b>Wind Speed:</b> ${data.wind_speed} m/s</p>
+                    <p><b>Coords:</b> ${data.coordinates}</p>
+                    <p><b>Rain (3h):</b> ${data.rain_volume}mm</p>
+                    <hr>
+                    <p><b>Random Fact:</b><br> <i>${data.fact}</i></p>
+                `;
+            } catch (err) {
+                infoDiv.innerHTML = "<p class='error'>Could not connect to server</p>";
+            }
+        };
+    </script>
+</body>
+</html>

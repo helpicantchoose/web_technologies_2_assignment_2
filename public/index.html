@@ -21,7 +21,7 @@
         <button id="btn">Search</button>
 
         <div id="info">
-            <!-- Data will appear here -->
+
         </div>
     </div>
 
@@ -34,7 +34,6 @@
             infoDiv.innerHTML = "Loading...";
 
             try {
-                // We ask OUR server for the data
                 const response = await fetch(`/weather-data?city=${city}`);
                 const data = await response.json();
 
@@ -43,7 +42,6 @@
                     return;
                 }
 
-                // Displaying the data using normal HTML
                 infoDiv.innerHTML = `
                     <h3>Results for ${city.toUpperCase()} (${data.country_code})</h3>
                     <p><b>Temp:</b> ${data.temperature}°C</p>
@@ -61,4 +59,5 @@
         };
     </script>
 </body>
+
 </html>
